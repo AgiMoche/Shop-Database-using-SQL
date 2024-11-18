@@ -3,8 +3,8 @@ services:
   postgres:
     image: postgres:9.6
     environment:
-      - POSTGRES_USER=agi_sql
-      - POSTGRES_PASSWORD=agi_password
+      - POSTGRES_USER=sql_db
+      - POSTGRES_PASSWORD=password
     volumes:
       - ./src/create-database.sql:/docker-entrypoint-initdb.d/create-database.sql
       - ./src/create-tables.sql:/docker-entrypoint-initdb.d/create-tables.sql
