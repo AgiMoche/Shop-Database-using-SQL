@@ -1,0 +1,20 @@
+version: "3.3"
+services:
+  postgres:
+    image: postgres:9.6
+    environment:
+      - POSTGRES_USER=agi_sql
+      - POSTGRES_PASSWORD=agi_password
+    volumes:
+      - ./src/create-database.sql:/docker-entrypoint-initdb.d/create-database.sql
+      - ./src/create-tables.sql:/docker-entrypoint-initdb.d/create-tables.sql
+      - ./src/populate-table.sql:/docker-entrypoint-initdb.d/populate-table.sql
+      - ./src/queries.sql:/docker-entrypoint-initdb.d/queries.sql
+    ports:
+      - 5432:5432
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
